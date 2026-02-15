@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from gradient_descent import batch_gradient_descent, mini_batch_gradient_descent, stochastic_gradient_descent
+from perceptron import load_iris_binary
 
 def main():
     np.random.seed(2026)
@@ -36,6 +37,13 @@ def main():
     plt.legend()
     plt.grid(True, which="both", ls="-", alpha=0.2)
     plt.show()
+
+    perceptron_dataset()
+
+def perceptron_dataset():
+    X, y = load_iris_binary()
+    print("Shape X:", X.shape)
+    print("Clases:", set(y))
 
 if __name__ == "__main__":
     main()
