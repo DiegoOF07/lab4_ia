@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from gradient_descent import batch_gradient_descent, mini_batch_gradient_descent, stochastic_gradient_descent
-from perceptron import load_iris_binary
+
+from perceptron import load_iris_binary, Perceptron
+import numpy as np
 
 def main():
     np.random.seed(2026)
@@ -42,8 +44,14 @@ def main():
 
 def perceptron_dataset():
     X, y = load_iris_binary()
-    print("Shape X:", X.shape)
-    print("Clases:", set(y))
+
+    model = Perceptron(lr=0.01, epochs=100)
+    model.fit(X, y)
+
+    y_pred = model.predict(X)
+    accuracy = np.mean(y_pred == y)
+
+    print("Accuracy:", accuracy)
 
 if __name__ == "__main__":
     main()
