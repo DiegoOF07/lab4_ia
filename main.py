@@ -53,5 +53,28 @@ def perceptron_dataset():
 
     print("Accuracy:", accuracy)
 
+    plt.figure(figsize=(8,6))
+    for label in np.unique(y):
+        plt.scatter(
+            X[y == label, 0],
+            X[y == label, 1],
+            label=f"Clase {label}"
+        )
+    
+    w1, w2 = model.w
+    b = model.b
+
+    x_values = np.linspace(X[:,0].min(), X[:,0].max(), 100)
+    y_values = -(w1 * x_values + b) / w2
+
+    plt.plot(x_values, y_values, 'k--', label="Frontera de decisión")
+
+    plt.xlabel("Sepal Length")
+    plt.ylabel("Sepal Width")
+    plt.title("Perceptrón - Frontera de Decisión")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 if __name__ == "__main__":
     main()
